@@ -18,7 +18,7 @@ after_success:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
     # Push images to docker hub
-    - docker push profemzy/checkpoint-client
-    - docker push profemzy/checkpoint-nginx
-    - docker push profemzy/checkpoint-server
-    - docker push profemzy/checkpoint-worker
+    - docker push profemzy/centro-client
+    - docker push profemzy/centro-nginx
+    - docker push profemzy/centrot-server
+    - docker push profemzy/centro-worker
