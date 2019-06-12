@@ -9,10 +9,10 @@ script:
     - docker run profemzy/react-test npm test -- --coverage
 
 after_success:
-    - docker build -t profemzy/checkpoint-client ./client
-    - docker build -t profemzy/checkpoint-nginx ./nginx
-    - docker build -t profemzy/checkpoint-server ./server
-    - docker build -t profemzy/checkpoint-worker ./worker
+    - docker build -t profemzy/centro-client ./client
+    - docker build -t profemzy/centro-nginx ./nginx
+    - docker build -t profemzy/centropoint-server ./server
+    - docker build -t profemzy/centro-worker ./worker
 
     # Login to docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
