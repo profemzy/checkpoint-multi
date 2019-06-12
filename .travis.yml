@@ -22,3 +22,17 @@ after_success:
     - docker push profemzy/centriqe-nginx
     - docker push profemzy/centriqe-server
     - docker push profemzy/centriqe-worker
+
+deploy:
+    provider: elasticbeanstalk
+    region: us-east-1
+    app: multi-docker
+    env: MultiDocker-env
+    bucket_name: elasticbeanstalk-us-east-1-686233958969
+    bucker_path: docker-multi
+    on:
+      branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+      secure: $AWS_SECRET_KEY
+
