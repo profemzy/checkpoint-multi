@@ -1,0 +1,24 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t profemzy/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run profemzy/react-test npm test -- --coverage
+
+after_success:
+    - docker build -t profemzy/checkpoint-client ./client
+    - docker build -t profemzy/checkpoint-nginx ./nginx
+    - docker build -t profemzy/checkpoint-server ./server
+    - docker build -t profemzy/checkpoint-worker ./worker
+
+    # Login to docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+    # Push images to docker hub
+    - docker push profemzy/checkpoint-client
+    - docker push profemzy/checkpoint-nginx
+    - docker push profemzy/checkpoint-server
+    - docker push profemzy/checkpoint-worker
