@@ -9,16 +9,16 @@ script:
     - docker run profemzy/react-test npm test -- --coverage
 
 after_success:
-    - docker build -t profemzy/centro-client ./client
-    - docker build -t profemzy/centro-nginx ./nginx
-    - docker build -t profemzy/centropoint-server ./server
-    - docker build -t profemzy/centro-worker ./worker
+    - docker build -t profemzy/centriqe-client ./client
+    - docker build -t profemzy/centriqe-nginx ./nginx
+    - docker build -t profemzy/centriqe-server ./server
+    - docker build -t profemzy/centriqe-worker ./worker
 
     # Login to docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
     # Push images to docker hub
-    - docker push profemzy/centro-client
-    - docker push profemzy/centro-nginx
-    - docker push profemzy/centrot-server
-    - docker push profemzy/centro-worker
+    - docker push profemzy/centriqe-client
+    - docker push profemzy/centriqe-nginx
+    - docker push profemzy/centriqe-server
+    - docker push profemzy/centriqe-worker
